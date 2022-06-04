@@ -233,3 +233,18 @@ func (l *List[V]) PushFrontList(other *List[V]) {
 		l.insertValue(e.Value, &l.root)
 	}
 }
+
+// Reverse does an iterative, in-place reversal of the list
+func (l *List[V]) Reverse() {
+	var (
+		head                = &l.root
+		newHead *Element[V] = nil
+	)
+	for head != nil {
+		next := head.next
+		head.next = newHead
+		newHead = head
+		head = next
+	}
+	l.root = *newHead
+}

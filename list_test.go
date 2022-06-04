@@ -338,3 +338,22 @@ func TestMoveUnknownMark(t *testing.T) {
 	checkList(t, &l1, []int{1})
 	checkList(t, &l2, []int{2})
 }
+
+func TestReverse(t *testing.T) {
+	l := New[int]()
+	for i := 0; i < 10; i++ {
+		l.PushBack(i)
+	}
+	checkList(t, l, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+
+	l.Reverse()
+	checkList(t, l, []int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0})
+}
+
+func TestReverseEmpty(t *testing.T) {
+	l := New[int]()
+	checkList(t, l, []int{})
+
+	l.Reverse()
+	checkList(t, l, []int{})
+}
